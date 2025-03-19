@@ -1,0 +1,68 @@
+import type { Transaction } from "./types"
+
+export const mockTransactions: Transaction[] = [
+  {
+    id: "tx1",
+    type: "sent",
+    amount: 50,
+    currency: "cUSD",
+    recipient: "John Doe",
+    date: "Today, 2:30 PM",
+    status: "Completed",
+  },
+  {
+    id: "tx2",
+    type: "received",
+    amount: 25,
+    currency: "cUSD",
+    recipient: "Sarah Johnson",
+    date: "Today, 10:15 AM",
+    status: "Completed",
+  },
+  {
+    id: "tx3",
+    type: "sent",
+    amount: 100,
+    currency: "cUSD",
+    recipient: "Michael Smith",
+    date: "Yesterday, 5:45 PM",
+    status: "Completed",
+  },
+  {
+    id: "tx4",
+    type: "received",
+    amount: 75,
+    currency: "cUSD",
+    recipient: "Emma Williams",
+    date: "Yesterday, 1:20 PM",
+    status: "Completed",
+  },
+  {
+    id: "tx5",
+    type: "sent",
+    amount: 30,
+    currency: "cEUR",
+    recipient: "David Brown",
+    date: "Mar 15, 2023",
+    status: "Completed",
+  },
+  {
+    id: "tx6",
+    type: "received",
+    amount: 120,
+    currency: "cUSD",
+    recipient: "Olivia Jones",
+    date: "Mar 14, 2023",
+    status: "Completed",
+  },
+  {
+    id: "tx7",
+    type: "sent",
+    amount: 45,
+    currency: "cUSD",
+    recipient: "James Wilson",
+    date: "Mar 12, 2023",
+    status: "Completed",
+  },
+]
+
