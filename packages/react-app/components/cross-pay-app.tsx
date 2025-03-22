@@ -32,11 +32,6 @@ export default function CrossPayApp() {
           )}
         </div>
       </Card>
-
-      <div className="mt-8 text-center text-white/60 text-sm">
-        <p>Powered by Celo MiniPay</p>
-        <p className="mt-1">Secure, fast cross-border payments across Africa</p>
-      </div>
     </div>
   )
 }
