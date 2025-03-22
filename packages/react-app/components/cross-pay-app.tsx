@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card } from "@/components/ui/card"
 import SendMoneyForm from "./send-money-form"
 import TransactionHistory from "./transaction-history"
@@ -10,31 +9,22 @@ import type { CountryData } from "@/lib/types"
 
 export default function CrossPayApp() {
   const [selectedCountry, setSelectedCountry] = useState<CountryData | null>(null)
+  const [showHistory, setShowHistory] = useState(false)
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-md">
-   
-
-      <Card className="mt-6 bg-white/10 backdrop-blur-md border-none text-white shadow-xl">
-        <div className="p-4">
+      <Card className="bg-[#2D1B5A]/50 backdrop-blur-sm border-none text-white shadow-2xl rounded-2xl">
+        <div className="p-6 space-y-6">
           <CountrySelector onSelectCountry={setSelectedCountry} />
-
-          <Tabs defaultValue="send" className="mt-6">
-            <TabsList className="grid w-full grid-cols-2 bg-white/5">
-              <TabsTrigger value="send" className="data-[state=active]:bg-primary">
-                Send Money
-              </TabsTrigger>
-              <TabsTrigger value="history" className="data-[state=active]:bg-primary">
-                History
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent value="send" className="mt-4">
-              <SendMoneyForm selectedCountry={selectedCountry} />
-            </TabsContent>
-            <TabsContent value="history" className="mt-4">
-              <TransactionHistory />
-            </TabsContent>
-          </Tabs>
+          
+          {showHistory ? (
+            <TransactionHistory onBack={() => setShowHistory(false)} />
+          ) : (
+            <SendMoneyForm 
+              selectedCountry={selectedCountry} 
+              onHistoryClick={() => setShowHistory(true)}
+            />
+          )}
         </div>
       </Card>
 

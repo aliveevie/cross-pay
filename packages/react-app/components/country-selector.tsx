@@ -25,14 +25,15 @@ export default function CountrySelector({ onSelectCountry }: CountrySelectorProp
 
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-white/80">Select Destination Country</label>
+      <label className="text-sm text-white/80">Select Destination Country</label>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-full justify-between bg-white/5 border-white/10 text-white hover:bg-white/10"
+            className="w-full justify-between bg-[#2D2A3E] border-white/10 text-white hover:bg-[#2D2A3E]/80 hover:border-white/20"
+            title="Select Country"
           >
             {selectedCountry ? (
               <div className="flex items-center gap-2">
@@ -51,7 +52,7 @@ export default function CountrySelector({ onSelectCountry }: CountrySelectorProp
             <ChevronDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-full p-0 bg-[#2D0B5A] border-white/10 text-white">
+        <PopoverContent className="w-full p-0 bg-[#2D2A3E] border-white/10 text-white">
           <Command>
             <CommandInput placeholder="Search country..." className="h-9" />
             <CommandList>
@@ -75,7 +76,7 @@ export default function CountrySelector({ onSelectCountry }: CountrySelectorProp
                     <CheckIcon
                       className={cn(
                         "ml-auto h-4 w-4",
-                        selectedCountry?.code === country.code ? "opacity-100" : "opacity-0",
+                        selectedCountry?.code === country.code ? "opacity-100" : "opacity-0"
                       )}
                     />
                   </CommandItem>
