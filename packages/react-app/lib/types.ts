@@ -2,7 +2,9 @@ export interface CountryData {
   name: string
   code: string
   currency: string
-  phoneCode: string
+  phoneCode?: string
+  flag: string
+  currencySymbol?: string
 }
 
 export interface CurrencyData {
