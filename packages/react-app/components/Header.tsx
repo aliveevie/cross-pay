@@ -1,7 +1,6 @@
-import { Disclosure } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Button } from "@/components/ui/button";
+import { Menu, User } from "lucide-react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useConnect } from "wagmi";
 import { injected } from "wagmi/connectors";
@@ -18,68 +17,38 @@ export default function Header() {
   }, []);
 
   return (
-    <Disclosure as="nav" className="bg-colors-primary border-b border-black">
-      {({ open }) => (
-        <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button */}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-black focus:outline-none focus:ring-1 focus:ring-inset focus:rounded-none focus:ring-black">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
-              </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
-                  <Image
-                    className="block h-8 w-auto sm:block lg:block"
-                    src="/logo.svg"
-                    width="24"
-                    height="24"
-                    alt="Celo Logo"
-                  />
-                </div>
-                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  <a
-                    href="#"
-                    className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
-                  >
-                    Home
-                  </a>
-                </div>
-              </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {!hideConnectBtn && (
-                  <ConnectButton
-                    showBalance={{
-                      smallScreen: true,
-                      largeScreen: false,
-                    }}
-                  />
-                )}
-              </div>
-            </div>
-          </div>
+    <div className="flex items-center justify-between bg-colors-primary border-b border-black p-4">
+      <div className="flex items-center gap-2">
+        <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M17 9L13.9558 13.5662C13.5299 14.2051 12.5728 14.1455 12.2294 13.4587L11.7706 12.5413C11.4272 11.8545 10.4701 11.7949 10.0442 12.4338L7 17"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+              stroke="white"
+              strokeWidth="2"
+            />
+          </svg>
+        </div>
+        <h1 className="text-2xl font-bold text-white">CrossPay</h1>
+      </div>
 
-          <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 pt-2 pb-4">
-              <Disclosure.Button
-                as="a"
-                href="#"
-                className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-black"
-              >
-                Home
-              </Disclosure.Button>
-              {/* Add here your custom menu elements */}
-            </div>
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+      <div className="flex items-center gap-2">
+        {!hideConnectBtn && (
+          <ConnectButton
+            showBalance={{
+              smallScreen: true,
+              largeScreen: false,
+            }}
+          />
+        )}
+      
+      </div>
+    </div>
   );
 }
