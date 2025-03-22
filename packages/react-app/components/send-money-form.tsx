@@ -5,21 +5,71 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ArrowRight } from "lucide-react"
 import type { CountryData } from "@/lib/types"
+import PaymentProcessing, { PaymentDetails } from "./payment-processing"
 
 interface SendMoneyFormProps {
   selectedCountry: CountryData | null
   onHistoryClick: () => void
+  onTransactionComplete?: (transaction: PaymentDetails) => void
 }
 
-export default function SendMoneyForm({ selectedCountry, onHistoryClick }: SendMoneyFormProps) {
+export default function SendMoneyForm({ 
+  selectedCountry, 
+  onHistoryClick,
+  onTransactionComplete
+}: SendMoneyFormProps) {
   const [amount, setAmount] = useState("")
   const [phone, setPhone] = useState("")
+  const [name, setName] = useState("")
+  const [isProcessing, setIsProcessing] = useState(false)
+  const [paymentDetails, setPaymentDetails] = useState<PaymentDetails | null>(null)
+
+  const handleSendMoney = () => {
+    if (!amount || !phone || !name) {
+      // In a real app, this would show validation errors
+      return
+    }
+
+    const details: PaymentDetails = {
+      amount: parseFloat(amount),
+      recipientName: name,
+      recipientPhone: phone,
+      currency: "cUSD",
+      date: new Date(),
+    }
+
+    setPaymentDetails(details)
+    setIsProcessing(true)
+  }
+
+  const handlePaymentSuccess = (transaction: PaymentDetails) => {
+    if (onTransactionComplete) {
+      onTransactionComplete(transaction)
+    }
+  }
+
+  const handleClosePayment = () => {
+    setIsProcessing(false)
+    setAmount("")
+    setPhone("")
+    setName("")
+  }
+
+  if (isProcessing && paymentDetails) {
+    return (
+      <PaymentProcessing 
+        paymentDetails={paymentDetails}
+        onClose={handleClosePayment}
+        onSuccess={handlePaymentSuccess}
+      />
+    )
+  }
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <Button 
-          onClick={() => {}} 
+          onClick={handleSendMoney} 
           className="bg-[#4ADE80] hover:bg-[#3EBE6F] text-white px-8 py-2 rounded-lg"
           title="Send Money"
         >
@@ -51,6 +101,17 @@ export default function SendMoneyForm({ selectedCountry, onHistoryClick }: SendM
       </div>
 
       <div className="space-y-2">
+        <label className="text-white/80 text-sm">Recipient Name</label>
+        <Input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Jane Doe"
+          className="w-full bg-[#2D2A3E] text-white border-white/10 focus:border-white/20 rounded-lg"
+        />
+      </div>
+
+      <div className="space-y-2">
         <label className="text-white/80 text-sm">Recipient Phone Number</label>
         <Input
           type="tel"
@@ -62,8 +123,9 @@ export default function SendMoneyForm({ selectedCountry, onHistoryClick }: SendM
       </div>
 
       <Button 
-        onClick={() => {}}
-        className="w-full bg-[#4ADE80] hover:bg-[#3EBE6F] text-white py-3 rounded-lg flex items-center justify-center gap-2 mt-4"
+        onClick={handleSendMoney}
+        disabled={!amount || !phone || !name}
+        className="w-full bg-[#4ADE80] hover:bg-[#3EBE6F] text-white py-3 rounded-lg flex items-center justify-center gap-2 mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
         title="Send Money"
       >
         Send Money

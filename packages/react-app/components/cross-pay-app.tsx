@@ -1,19 +1,31 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
 import SendMoneyForm from "./send-money-form"
 import TransactionHistory from "./transaction-history"
 import CountrySelector from "./country-selector"
 import type { CountryData } from "@/lib/types"
+import { PaymentDetails } from "./payment-processing"
+import { mockTransactions } from "@/lib/mock-data"
 
 export default function CrossPayApp() {
   const [selectedCountry, setSelectedCountry] = useState<CountryData | null>(null)
   const [showHistory, setShowHistory] = useState(false)
+  const [transactions, setTransactions] = useState<PaymentDetails[]>([])
+
+  // Initialize with mock transactions
+  useEffect(() => {
+    setTransactions(mockTransactions)
+  }, [])
 
   const handleSelectCountry = (country: CountryData) => {
     setSelectedCountry(country)
     console.log("Selected country:", country)
+  }
+
+  const handleTransactionComplete = (newTransaction: PaymentDetails) => {
+    setTransactions(prev => [newTransaction, ...prev])
   }
 
   return (
@@ -23,11 +35,15 @@ export default function CrossPayApp() {
           {!showHistory && <CountrySelector onSelectCountry={handleSelectCountry} />}
           
           {showHistory ? (
-            <TransactionHistory onBack={() => setShowHistory(false)} />
+            <TransactionHistory 
+              onBack={() => setShowHistory(false)} 
+              transactions={transactions}
+            />
           ) : (
             <SendMoneyForm 
               selectedCountry={selectedCountry} 
               onHistoryClick={() => setShowHistory(true)}
+              onTransactionComplete={handleTransactionComplete}
             />
           )}
         </div>

@@ -1,68 +1,21 @@
-import type { Transaction } from "./types"
+import { PaymentDetails } from "@/components/payment-processing";
 
-export const mockTransactions: Transaction[] = [
+export const mockTransactions: PaymentDetails[] = [
   {
-    id: "tx1",
-    type: "sent",
-    amount: 50,
+    amount: 250.00,
+    recipientName: "John Doe",
+    recipientPhone: "+234 812 345 6789",
     currency: "cUSD",
-    recipient: "John Doe",
-    date: "Today, 2:30 PM",
-    status: "Completed",
+    date: new Date(2023, 10, 15),
+    txHash: "0x1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y6z7a8b9c0d"
   },
   {
-    id: "tx2",
-    type: "received",
-    amount: 25,
+    amount: 100.00,
+    recipientName: "Alice Smith",
+    recipientPhone: "+233 541 234 5678",
     currency: "cUSD",
-    recipient: "Sarah Johnson",
-    date: "Today, 10:15 AM",
-    status: "Completed",
-  },
-  {
-    id: "tx3",
-    type: "sent",
-    amount: 100,
-    currency: "cUSD",
-    recipient: "Michael Smith",
-    date: "Yesterday, 5:45 PM",
-    status: "Completed",
-  },
-  {
-    id: "tx4",
-    type: "received",
-    amount: 75,
-    currency: "cUSD",
-    recipient: "Emma Williams",
-    date: "Yesterday, 1:20 PM",
-    status: "Completed",
-  },
-  {
-    id: "tx5",
-    type: "sent",
-    amount: 30,
-    currency: "cEUR",
-    recipient: "David Brown",
-    date: "Mar 15, 2023",
-    status: "Completed",
-  },
-  {
-    id: "tx6",
-    type: "received",
-    amount: 120,
-    currency: "cUSD",
-    recipient: "Olivia Jones",
-    date: "Mar 14, 2023",
-    status: "Completed",
-  },
-  {
-    id: "tx7",
-    type: "sent",
-    amount: 45,
-    currency: "cUSD",
-    recipient: "James Wilson",
-    date: "Mar 12, 2023",
-    status: "Completed",
-  },
-]
+    date: new Date(2023, 10, 10),
+    txHash: "0xabcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+  }
+];
 
