@@ -116,8 +116,7 @@ export default function PaymentProcessing({
           </div>
           <Button 
             className="bg-[#6E56CF] hover:bg-[#7C66D9] w-full max-w-xs"
-            onClick={onClose}
-          >
+            onClick={onClose} title={""}          >
             Done
           </Button>
         </>
@@ -125,10 +124,9 @@ export default function PaymentProcessing({
       
       {stage !== "success" && (
         <Button 
-          variant="ghost" 
+          variant="ghost"
           className="mt-6 text-white/60 hover:text-white hover:bg-white/10"
-          onClick={onClose}
-        >
+          onClick={onClose} title={""}        >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Cancel
         </Button>
