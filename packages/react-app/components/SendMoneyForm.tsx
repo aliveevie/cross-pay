@@ -47,7 +47,7 @@ export default function SendMoneyForm({ selectedCountry, onHistoryClick }: SendM
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <Button 
-          className="bg-[#4ADE80] hover:bg-[#3EBE6F] text-white px-8 py-2 rounded-lg"
+          className="bg-[#4ADE80] hover:bg-[#3EBE6F] text-white px-8 py-2 rounded-full"
           title="Send Money"
           onClick={handleSendMoney}
         >
@@ -83,17 +83,17 @@ export default function SendMoneyForm({ selectedCountry, onHistoryClick }: SendM
       )}
 
       <div className="space-y-2">
-        <label className="text-white mb-2 block">Amount</label>
+        <label className="text-white text-base">Amount</label>
         <div className="flex gap-2">
           <Input
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="0.00"
-            className="flex-1 bg-[#2D2A3E] text-white border-white/10"
+            className="flex-1 h-12 bg-[#2D2A3E] text-white border-white/10 rounded-full px-4"
           />
           <Select defaultValue="cUSD">
-            <SelectTrigger className="w-24 bg-[#2D2A3E] text-white border-white/10">
+            <SelectTrigger className="w-24 h-12 bg-[#2D2A3E] text-white border-white/10 rounded-full">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="bg-[#2D2A3E] border-white/10 text-white">
@@ -109,18 +109,18 @@ export default function SendMoneyForm({ selectedCountry, onHistoryClick }: SendM
       </div>
 
       <div className="space-y-2">
-        <label className="text-white mb-2 block">Recipient Phone Number</label>
+        <label className="text-white text-base">Recipient Phone Number</label>
         <Input
           type="tel"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           placeholder="+234 800 000 0000"
-          className="w-full bg-[#2D2A3E] text-white border-white/10"
+          className="w-full h-12 bg-[#2D2A3E] text-white border-white/10 rounded-full px-4"
         />
       </div>
 
       <Button 
-        className="w-full bg-[#4ADE80] hover:bg-[#3EBE6F] text-white py-3 rounded-lg flex items-center justify-center gap-2"
+        className="w-full bg-[#4ADE80] hover:bg-[#3EBE6F] text-white py-3 rounded-full flex items-center justify-center gap-2 h-12"
         title="Send Money"
         onClick={handleSendMoney}
         disabled={!selectedCountry || !amount || !phone}

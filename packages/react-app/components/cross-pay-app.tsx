@@ -18,7 +18,7 @@ export default function CrossPayApp() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-md">
-      <Card className="bg-[#2D1B5A]/50 backdrop-blur-sm border-none text-white shadow-2xl rounded-2xl">
+      <Card className="bg-[#1E0E40] backdrop-blur-sm border-none text-white shadow-2xl rounded-2xl">
         <div className="p-6 space-y-6">
           {!showHistory && <CountrySelector onSelectCountry={handleSelectCountry} />}
           
@@ -32,6 +32,7 @@ export default function CrossPayApp() {
           )}
         </div>
       </Card>
+
       <div className="mt-8 text-center text-white/60 text-sm">
         <p>Powered by Celo MiniPay</p>
         <p className="mt-1">Secure, fast cross-border payments across Africa</p>
