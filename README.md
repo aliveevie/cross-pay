@@ -33,6 +33,7 @@ Cross Pay is a **seamless and rewarding digital payment solution** built on **Ce
 - **Backend:** Node.js with Express, Firebase for authentication  
 - **Blockchain:** Celo for payments, OpenZeppelin smart contracts for NFTs  
 - **Storage:** IPFS for decentralized NFT metadata  
+- **Contract Address (Celo Alfajores):** `0x8156715d27e1b9bCfb0B1Ff820321b9cdF196148`
 
 ## 💡 Future Roadmap  
 
